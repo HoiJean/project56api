@@ -12,44 +12,44 @@ using Project56api.Models;
 
 namespace Project56api.Controllers
 {
-    public class ConnectionsController : ApiController
+    public class EventsController : ApiController
     {
         private Citygis db = new Citygis();
 
-        // GET: api/Connections
-        public IQueryable<connections> Getconnections()
+        // GET: api/Events
+        public IQueryable<Event> GetEvents()
         {
-            return db.connections;
+            return db.Events;
         }
 
-        // GET: api/Connections/5
-        [ResponseType(typeof(connections))]
-        public IHttpActionResult Getconnections(int id)
+        // GET: api/Events/5
+        [ResponseType(typeof(Event))]
+        public IHttpActionResult GetEvent(int id)
         {
-            connections connections = db.connections.Find(id);
-            if (connections == null)
+            Event @event = db.Events.Find(id);
+            if (@event == null)
             {
                 return NotFound();
             }
 
-            return Ok(connections);
+            return Ok(@event);
         }
 
-        // PUT: api/Connections/5
+        // PUT: api/Events/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult Putconnections(int id, connections connections)
+        public IHttpActionResult PutEvent(int id, Event @event)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != connections.Id)
+            if (id != @event.Id)
             {
                 return BadRequest();
             }
 
-            db.Entry(connections).State = EntityState.Modified;
+            db.Entry(@event).State = EntityState.Modified;
 
             try
             {
@@ -57,7 +57,7 @@ namespace Project56api.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!connectionsExists(id))
+                if (!EventExists(id))
                 {
                     return NotFound();
                 }
@@ -70,35 +70,35 @@ namespace Project56api.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // POST: api/Connections
-        [ResponseType(typeof(connections))]
-        public IHttpActionResult Postconnections(connections connections)
+        // POST: api/Events
+        [ResponseType(typeof(Event))]
+        public IHttpActionResult PostEvent(Event @event)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            db.connections.Add(connections);
+            db.Events.Add(@event);
             db.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = connections.Id }, connections);
+            return CreatedAtRoute("DefaultApi", new { id = @event.Id }, @event);
         }
 
-        // DELETE: api/Connections/5
-        [ResponseType(typeof(connections))]
-        public IHttpActionResult Deleteconnections(int id)
+        // DELETE: api/Events/5
+        [ResponseType(typeof(Event))]
+        public IHttpActionResult DeleteEvent(int id)
         {
-            connections connections = db.connections.Find(id);
-            if (connections == null)
+            Event @event = db.Events.Find(id);
+            if (@event == null)
             {
                 return NotFound();
             }
 
-            db.connections.Remove(connections);
+            db.Events.Remove(@event);
             db.SaveChanges();
 
-            return Ok(connections);
+            return Ok(@event);
         }
 
         protected override void Dispose(bool disposing)
@@ -110,9 +110,9 @@ namespace Project56api.Controllers
             base.Dispose(disposing);
         }
 
-        private bool connectionsExists(int id)
+        private bool EventExists(int id)
         {
-            return db.connections.Count(e => e.Id == id) > 0;
+            return db.Events.Count(e => e.Id == id) > 0;
         }
     }
 }

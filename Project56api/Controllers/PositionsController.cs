@@ -12,44 +12,44 @@ using Project56api.Models;
 
 namespace Project56api.Controllers
 {
-    public class ConnectionsController : ApiController
+    public class PositionsController : ApiController
     {
         private Citygis db = new Citygis();
 
-        // GET: api/Connections
-        public IQueryable<connections> Getconnections()
+        // GET: api/Positions
+        public IQueryable<positions> Getpositions()
         {
-            return db.connections;
+            return db.positions;
         }
 
-        // GET: api/Connections/5
-        [ResponseType(typeof(connections))]
-        public IHttpActionResult Getconnections(int id)
+        // GET: api/Positions/5
+        [ResponseType(typeof(positions))]
+        public IHttpActionResult Getpositions(int id)
         {
-            connections connections = db.connections.Find(id);
-            if (connections == null)
+            positions positions = db.positions.Find(id);
+            if (positions == null)
             {
                 return NotFound();
             }
 
-            return Ok(connections);
+            return Ok(positions);
         }
 
-        // PUT: api/Connections/5
+        // PUT: api/Positions/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult Putconnections(int id, connections connections)
+        public IHttpActionResult Putpositions(int id, positions positions)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != connections.Id)
+            if (id != positions.id)
             {
                 return BadRequest();
             }
 
-            db.Entry(connections).State = EntityState.Modified;
+            db.Entry(positions).State = EntityState.Modified;
 
             try
             {
@@ -57,7 +57,7 @@ namespace Project56api.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!connectionsExists(id))
+                if (!positionsExists(id))
                 {
                     return NotFound();
                 }
@@ -70,35 +70,35 @@ namespace Project56api.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // POST: api/Connections
-        [ResponseType(typeof(connections))]
-        public IHttpActionResult Postconnections(connections connections)
+        // POST: api/Positions
+        [ResponseType(typeof(positions))]
+        public IHttpActionResult Postpositions(positions positions)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            db.connections.Add(connections);
+            db.positions.Add(positions);
             db.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = connections.Id }, connections);
+            return CreatedAtRoute("DefaultApi", new { id = positions.id }, positions);
         }
 
-        // DELETE: api/Connections/5
-        [ResponseType(typeof(connections))]
-        public IHttpActionResult Deleteconnections(int id)
+        // DELETE: api/Positions/5
+        [ResponseType(typeof(positions))]
+        public IHttpActionResult Deletepositions(int id)
         {
-            connections connections = db.connections.Find(id);
-            if (connections == null)
+            positions positions = db.positions.Find(id);
+            if (positions == null)
             {
                 return NotFound();
             }
 
-            db.connections.Remove(connections);
+            db.positions.Remove(positions);
             db.SaveChanges();
 
-            return Ok(connections);
+            return Ok(positions);
         }
 
         protected override void Dispose(bool disposing)
@@ -110,9 +110,9 @@ namespace Project56api.Controllers
             base.Dispose(disposing);
         }
 
-        private bool connectionsExists(int id)
+        private bool positionsExists(int id)
         {
-            return db.connections.Count(e => e.Id == id) > 0;
+            return db.positions.Count(e => e.id == id) > 0;
         }
     }
 }

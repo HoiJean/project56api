@@ -12,44 +12,44 @@ using Project56api.Models;
 
 namespace Project56api.Controllers
 {
-    public class ConnectionsController : ApiController
+    public class MonitoringController : ApiController
     {
         private Citygis db = new Citygis();
 
-        // GET: api/Connections
-        public IQueryable<connections> Getconnections()
+        // GET: api/Monitoring
+        public IQueryable<Monitor> GetMonitors()
         {
-            return db.connections;
+            return db.Monitors;
         }
 
-        // GET: api/Connections/5
-        [ResponseType(typeof(connections))]
-        public IHttpActionResult Getconnections(int id)
+        // GET: api/Monitoring/5
+        [ResponseType(typeof(Monitor))]
+        public IHttpActionResult GetMonitor(int id)
         {
-            connections connections = db.connections.Find(id);
-            if (connections == null)
+            Monitor monitor = db.Monitors.Find(id);
+            if (monitor == null)
             {
                 return NotFound();
             }
 
-            return Ok(connections);
+            return Ok(monitor);
         }
 
-        // PUT: api/Connections/5
+        // PUT: api/Monitoring/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult Putconnections(int id, connections connections)
+        public IHttpActionResult PutMonitor(int id, Monitor monitor)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != connections.Id)
+            if (id != monitor.Id)
             {
                 return BadRequest();
             }
 
-            db.Entry(connections).State = EntityState.Modified;
+            db.Entry(monitor).State = EntityState.Modified;
 
             try
             {
@@ -57,7 +57,7 @@ namespace Project56api.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!connectionsExists(id))
+                if (!MonitorExists(id))
                 {
                     return NotFound();
                 }
@@ -70,35 +70,35 @@ namespace Project56api.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // POST: api/Connections
-        [ResponseType(typeof(connections))]
-        public IHttpActionResult Postconnections(connections connections)
+        // POST: api/Monitoring
+        [ResponseType(typeof(Monitor))]
+        public IHttpActionResult PostMonitor(Monitor monitor)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            db.connections.Add(connections);
+            db.Monitors.Add(monitor);
             db.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = connections.Id }, connections);
+            return CreatedAtRoute("DefaultApi", new { id = monitor.Id }, monitor);
         }
 
-        // DELETE: api/Connections/5
-        [ResponseType(typeof(connections))]
-        public IHttpActionResult Deleteconnections(int id)
+        // DELETE: api/Monitoring/5
+        [ResponseType(typeof(Monitor))]
+        public IHttpActionResult DeleteMonitor(int id)
         {
-            connections connections = db.connections.Find(id);
-            if (connections == null)
+            Monitor monitor = db.Monitors.Find(id);
+            if (monitor == null)
             {
                 return NotFound();
             }
 
-            db.connections.Remove(connections);
+            db.Monitors.Remove(monitor);
             db.SaveChanges();
 
-            return Ok(connections);
+            return Ok(monitor);
         }
 
         protected override void Dispose(bool disposing)
@@ -110,9 +110,9 @@ namespace Project56api.Controllers
             base.Dispose(disposing);
         }
 
-        private bool connectionsExists(int id)
+        private bool MonitorExists(int id)
         {
-            return db.connections.Count(e => e.Id == id) > 0;
+            return db.Monitors.Count(e => e.Id == id) > 0;
         }
     }
 }

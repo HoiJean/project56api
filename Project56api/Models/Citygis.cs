@@ -12,18 +12,23 @@ namespace Project56api.Models
         {
         }
 
-        public virtual DbSet<connections> connections { get; set; }
-        public virtual DbSet<positions> positions { get; set; }
+        public DbSet<connections> connections { get; set; }
+        public DbSet<positions> positions { get; set; }
 
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
-        {
-            modelBuilder.Entity<connections>()
-                .Property(e => e.port)
-                .IsUnicode(false);
+        public System.Data.Entity.DbSet<Project56api.Models.Event> Events { get; set; }
 
-            modelBuilder.Entity<positions>()
-                .Property(e => e.quality)
-                .IsUnicode(false);
-        }
+        public System.Data.Entity.DbSet<Project56api.Models.Monitor> Monitors { get; set; }
+
+
+        //protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        //{
+        //    modelBuilder.Entity<connections>()
+        //        .Property(e => e.Port)
+        //        .IsUnicode(false);
+
+        //    modelBuilder.Entity<positions>()
+        //        .Property(e => e.quality)
+        //        .IsUnicode(false);
+        //}
     }
 }

@@ -9,16 +9,16 @@ namespace Project56api.Models
     [Table("citygis.connections")]
     public partial class connections
     {
-        public int id { get; set; }
+        public int Id { get; set; }
 
-        public DateTime? datetime { get; set; }
+        public DateTime? Datetime { get; set; }
 
-        public int value { get; set; }
+        public int? Value { get; set; }
 
         [Required]
         [StringLength(200)]
-        public string port { get; set; }
+        public string Port { get; set; }
 
-        public long unit_id { get; set; }
+        public int Unit_id { get; set; }
     }
 }
