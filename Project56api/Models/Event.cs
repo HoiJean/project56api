@@ -18,6 +18,6 @@ namespace Project56api.Models
 
         public string port { get; set; }
 
-        public int unit_id { get; set; }
+        public double unit_id { get; set; }
     }
 }

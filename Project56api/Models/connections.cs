@@ -19,6 +19,6 @@ namespace Project56api.Models
         [StringLength(200)]
         public string Port { get; set; }
 
-        public int Unit_id { get; set; }
+        public double Unit_id { get; set; }
     }
 }

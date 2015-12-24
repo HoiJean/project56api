@@ -13,11 +13,11 @@ namespace Project56api.Models
 
         public DateTime datetime { get; set; }
 
-        public long unit_id { get; set; }
+        public double unit_id { get; set; }
 
-        public long rdx { get; set; }
+        public double rdx { get; set; }
 
-        public long rdy { get; set; }
+        public double rdy { get; set; }
 
         public int speed { get; set; }
 

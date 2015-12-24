@@ -13,8 +13,8 @@ namespace Project56api.Models
         public DateTime Begin_time { get; set; }
         public DateTime End_time { get; set; }
         public string Type { get; set; }
-        public int Min { get; set; }
-        public int Max { get; set; }
-        public int Sum { get; set; }
+        public double Min { get; set; }
+        public double Max { get; set; }
+        public double Sum { get; set; }
     }
 }
