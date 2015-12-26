@@ -34,6 +34,25 @@ namespace Project56api.Controllers
 
             return Ok(connections);
         }
+        
+        [ResponseType(typeof(connections))]
+        public IHttpActionResult GetconnectionsByDate(DateTime datetime)
+        {
+            var newdate = datetime.Date;
+            string onlydate = newdate.ToString().Split(' ')[0];
+            
+
+            string enddate = onlydate + " 23:59:59";
+            DateTime dt = Convert.ToDateTime(enddate);
+
+            var result = (
+                from c in db.connections
+                where c.Datetime>= newdate && c.Datetime <= dt
+                select c   
+            );
+
+            return Ok(result);
+        }
 
         // PUT: api/Connections/5
         [ResponseType(typeof(void))]
