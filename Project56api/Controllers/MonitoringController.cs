@@ -22,6 +22,16 @@ namespace Project56api.Controllers
             return db.Monitors;
         }
 
+        [ResponseType(typeof(connections))]
+        public IHttpActionResult GetCount(string count)
+        {
+            var c = (
+               db.Monitors.Count()
+             );
+
+            return Ok(c);
+        }
+
         // GET: api/Monitoring/5
         [ResponseType(typeof(Monitor))]
         public IHttpActionResult GetMonitor(int id)

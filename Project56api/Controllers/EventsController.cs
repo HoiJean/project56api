@@ -22,6 +22,28 @@ namespace Project56api.Controllers
             return db.Events;
         }
 
+        [ResponseType(typeof(Event))]
+        public IHttpActionResult GetCount(string count)
+        {
+            var c = (
+               db.Events.Count()
+             );
+
+            return Ok(c);
+        }
+
+        [ResponseType(typeof(Event))]
+        public IHttpActionResult GetFromunit(string fromUnit)
+        {
+            var newUnitId = Convert.ToDouble(fromUnit);
+
+            var c = (
+               db.Events.Where(m => m.unit_id == newUnitId)
+             );
+
+            return Ok(c);
+        }
+
         // GET: api/Events/5
         [ResponseType(typeof(Event))]
         public IHttpActionResult GetEvent(int id)

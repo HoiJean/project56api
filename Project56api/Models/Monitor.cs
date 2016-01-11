@@ -16,5 +16,6 @@ namespace Project56api.Models
         public double Min { get; set; }
         public double Max { get; set; }
         public double Sum { get; set; }
+        public double Unit_id { get; set; }
     }
 }

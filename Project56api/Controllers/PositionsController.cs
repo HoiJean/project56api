@@ -22,6 +22,24 @@ namespace Project56api.Controllers
             return db.positions;
         }
 
+        [ResponseType(typeof(connections))]
+        public IHttpActionResult GetCount(string count)
+        {
+            return Ok(db.positions.Count());
+        }
+
+        [ResponseType(typeof(connections))]
+        public IHttpActionResult GetFromunit(string fromUnit)
+        {
+            var newUnitId = Convert.ToDouble(fromUnit);
+
+            var c = (
+               db.positions.Where(m => m.unit_id == newUnitId)
+             );
+
+            return Ok(c);
+        }
+
         // GET: api/Positions/5
         [ResponseType(typeof(positions))]
         public IHttpActionResult Getpositions(int id)

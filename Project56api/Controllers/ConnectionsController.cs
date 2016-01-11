@@ -22,6 +22,35 @@ namespace Project56api.Controllers
             return db.connections;
         }
 
+        [ResponseType(typeof(connections))]
+        public IHttpActionResult GetCount(string count)
+        {
+            var c = (
+               db.connections.Count()
+             );
+
+            return Ok(c);
+        }
+
+        [ResponseType(typeof(connections))]
+        public IHttpActionResult GetFromunit(string fromUnit)
+        {
+            var newUnitId = Convert.ToDouble(fromUnit);
+
+            var c = (
+               db.connections.Where(m => m.Unit_id == newUnitId)
+             );
+
+            return Ok(c);
+        }
+
+        [ResponseType(typeof(connections))]
+        public IHttpActionResult Getaa(string aa)
+        {
+
+            return Ok(db.connections);
+        }
+
         // GET: api/Connections/5
         [ResponseType(typeof(connections))]
         public IHttpActionResult Getconnections(int id)
