@@ -32,6 +32,16 @@ namespace Project56api.Controllers
             return Ok(c);
         }
 
+        [ResponseType(typeof(connections))]
+        public IHttpActionResult GetMonitoringPagination(string ConnectionsPagination, int page)
+        {
+
+
+            var paginationResults = db.Monitors.OrderBy(m => m.Id).Skip((page - 1) * 30).Take(30);
+
+            return Ok(paginationResults);
+        }
+
         // GET: api/Monitoring/5
         [ResponseType(typeof(Monitor))]
         public IHttpActionResult GetMonitor(int id)

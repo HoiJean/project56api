@@ -33,6 +33,16 @@ namespace Project56api.Controllers
         }
 
         [ResponseType(typeof(connections))]
+        public IHttpActionResult GetConnectionsPagination(string ConnectionsPagination, int page)
+        {
+
+            
+            var paginationResults =  db.connections.OrderBy(m => m.Id).Skip((page - 1) * 30).Take(30);
+
+            return Ok(paginationResults);
+        }
+
+        [ResponseType(typeof(connections))]
         public IHttpActionResult GetFromunit(string fromUnit)
         {
             var newUnitId = Convert.ToDouble(fromUnit);

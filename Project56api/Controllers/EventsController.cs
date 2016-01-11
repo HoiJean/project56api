@@ -32,6 +32,16 @@ namespace Project56api.Controllers
             return Ok(c);
         }
 
+        [ResponseType(typeof(connections))]
+        public IHttpActionResult GetEventsPagination(string ConnectionsPagination, int page)
+        {
+
+
+            var paginationResults = db.Events.OrderBy(m => m.Id).Skip((page - 1) * 30).Take(30);
+
+            return Ok(paginationResults);
+        }
+
         [ResponseType(typeof(Event))]
         public IHttpActionResult GetFromunit(string fromUnit)
         {
