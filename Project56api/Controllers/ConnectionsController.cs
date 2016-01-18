@@ -19,7 +19,7 @@ namespace Project56api.Controllers
         // GET: api/Connections
         public IQueryable<connections> Getconnections()
         {
-            return db.connections;
+            return db.connections.GroupBy(x => x.Unit_id).Select(y => y.FirstOrDefault());
         }
 
         [ResponseType(typeof(connections))]

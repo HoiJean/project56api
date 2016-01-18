@@ -19,7 +19,7 @@ namespace Project56api.Controllers
         // GET: api/Monitoring
         public IQueryable<Monitor> GetMonitors()
         {
-            return db.Monitors;
+            return db.Monitors.GroupBy(x => x.Unit_id).Select(y => y.FirstOrDefault());
         }
 
         [ResponseType(typeof(connections))]

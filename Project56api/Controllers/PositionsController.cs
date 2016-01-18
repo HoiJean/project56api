@@ -19,7 +19,7 @@ namespace Project56api.Controllers
         // GET: api/Positions
         public IQueryable<positions> Getpositions()
         {
-            return db.positions;
+            return db.positions.GroupBy(x => x.unit_id).Select(y => y.FirstOrDefault());
         }
 
         [ResponseType(typeof(connections))]

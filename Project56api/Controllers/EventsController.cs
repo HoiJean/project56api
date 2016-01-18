@@ -19,7 +19,7 @@ namespace Project56api.Controllers
         // GET: api/Events
         public IQueryable<Event> GetEvents()
         {
-            return db.Events;
+            return db.Events.GroupBy(x => x.unit_id).Select(y => y.FirstOrDefault());
         }
 
         [ResponseType(typeof(Event))]
