@@ -37,7 +37,7 @@ namespace Project56api.Controllers
         {
 
 
-            var paginationResults = db.Monitors.OrderBy(m => m.Id).Skip((page - 1) * 30).Take(30);
+            var paginationResults = db.Monitors.OrderBy(m => m.Id).Skip((page - 1) * 10).Take(10);
 
             return Ok(paginationResults);
         }

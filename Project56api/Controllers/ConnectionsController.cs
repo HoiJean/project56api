@@ -19,6 +19,11 @@ namespace Project56api.Controllers
         // GET: api/Connections
         public IQueryable<connections> Getconnections()
         {
+            return db.connections;
+        }
+
+        public IQueryable<connections> GetconnectionsSorted(string connectionsSorted)
+        {
             return db.connections.GroupBy(x => x.Unit_id).Select(y => y.FirstOrDefault());
         }
 
@@ -37,7 +42,7 @@ namespace Project56api.Controllers
         {
 
             
-            var paginationResults =  db.connections.OrderBy(m => m.Id).Skip((page - 1) * 30).Take(30);
+            var paginationResults =  db.connections.OrderBy(m => m.Id).Skip((page - 1) * 10).Take(10);
 
             return Ok(paginationResults);
         }
